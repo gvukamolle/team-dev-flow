@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/handoff/v2",
+  "title": "Team Dev Flow provider-neutral Handoff",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "scope_ref", "source_revision", "contract_hash", "repository", "source_branch", "target_branch", "head_sha", "summary", "acceptance_evidence", "verification", "review", "deferred_work", "risks", "unverified", "next_actions"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/handoff/v2"},
+    "scope_ref": {"type": "string", "pattern": "^[a-z][a-z0-9+._-]*:[^\\s:]+:.+$"},
+    "source_revision": {
+      "type": "object", "additionalProperties": false, "required": ["updated", "content_hash"],
+      "properties": {
+        "updated": {"type": "string", "minLength": 1},
+        "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "contract_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "repository": {"type": "string", "minLength": 1},
+    "source_branch": {"type": "string", "minLength": 1},
+    "target_branch": {"type": "string", "minLength": 1},
+    "head_sha": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+    "summary": {"type": "string", "minLength": 1},
+    "changed_components": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "acceptance_evidence": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "verification": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "review": {
+      "type": "object", "additionalProperties": false, "required": ["reviewed_sha", "result", "passes"],
+      "properties": {
+        "reviewed_sha": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+        "result": {"enum": ["PASS", "REQUEST_CHANGES", "ESCALATE"]},
+        "passes": {"type": "integer", "minimum": 1, "maximum": 5}
+      }
+    },
+    "deferred_work": {"type": "array", "items": {"type": "string"}},
+    "risks": {"type": "array", "items": {"type": "string"}},
+    "unverified": {"type": "array", "items": {"type": "string"}},
+    "rollout": {"type": "string"},
+    "rollback": {"type": "string"},
+    "monitoring": {"type": "string"},
+    "next_actions": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  }
+}

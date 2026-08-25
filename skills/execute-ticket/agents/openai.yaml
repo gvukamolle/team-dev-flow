@@ -1,0 +1,4 @@
+interface:
+  display_name: "Execute Jira ticket"
+  short_description: "Implement a bounded Task Contract"
+  default_prompt: "Implement only the accepted Task Contract, verify it, and prepare it for independent review."

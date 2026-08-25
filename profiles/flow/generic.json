@@ -1,0 +1,12 @@
+{
+  "schema_version": "team-dev-flow/flow-profile/v1",
+  "id": "generic",
+  "version": "1",
+  "adapters": {"agent_host": "codex", "task_store": null, "git_provider": "git-local"},
+  "operations": {
+    "discover": {"requires": ["agent_host:workflow.execute:read"]},
+    "specify": {"requires": ["agent_host:workflow.execute:read"]},
+    "plan": {"requires": ["agent_host:workflow.execute:read"]},
+    "inspect_repository": {"requires": ["git_provider:repository.read:read"]}
+  }
+}

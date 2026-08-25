@@ -1,0 +1,35 @@
+{
+  "schema_version": "team-dev-flow/release-files/v1",
+  "include_files": [
+    ".codex-plugin/plugin.json",
+    ".gitattributes",
+    ".gitignore",
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "REQUIREMENTS.md",
+    "SECURITY.md",
+    "hooks.json",
+    "package.json",
+    "requirements.txt",
+    "requirements.lock.txt"
+  ],
+  "include_trees": [
+    "agents",
+    "core",
+    "contracts",
+    "examples",
+    "host-packages",
+    "packaging",
+    "profiles",
+    "references",
+    "roles",
+    "scripts",
+    "skills",
+    "templates"
+  ],
+  "allowed_suffixes": [".cjs", ".json", ".md", ".py", ".toml", ".txt", ".yaml", ".yml"],
+  "denied_names": [".env", ".env.local"],
+  "denied_suffixes": [".crt", ".key", ".p12", ".pem", ".token"]
+}

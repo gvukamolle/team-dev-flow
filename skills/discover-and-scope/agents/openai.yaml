@@ -1,0 +1,5 @@
+interface:
+  display_name: "Research and scope"
+  short_description: "Turn an idea into a Jira-ready contract"
+  default_prompt: "Research the current code and dependencies, then draft a bounded Jira task without implementing it."
+

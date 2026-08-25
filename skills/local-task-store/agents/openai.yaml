@@ -1,0 +1,4 @@
+interface:
+  display_name: "Local TaskStore"
+  short_description: "Manage Obsidian work items safely"
+  default_prompt: "Use the selected Local Markdown TaskStore for this work."

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Start Jira work"
+  short_description: "Validate scope before implementation"
+  default_prompt: "Load the Jira issue and repository, classify readiness, and form a Task Contract before editing."
+

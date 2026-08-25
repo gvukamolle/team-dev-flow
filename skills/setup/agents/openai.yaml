@@ -1,0 +1,4 @@
+interface:
+  display_name: "Set up Team Dev Flow"
+  short_description: "Install, update, configure, or diagnose"
+  default_prompt: "Настрой или обнови Team Dev Flow безопасно, не запрашивая Jira-токен в чате."

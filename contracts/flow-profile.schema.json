@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/flow-profile/v1",
+  "title": "Team Dev Flow runtime profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "version", "adapters", "operations"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/flow-profile/v1"},
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+    "version": {"type": "string", "minLength": 1},
+    "adapters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agent_host", "task_store", "git_provider"],
+      "properties": {
+        "agent_host": {"anyOf": [{"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"}, {"type": "null"}]},
+        "task_store": {"anyOf": [{"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"}, {"type": "null"}]},
+        "git_provider": {"anyOf": [{"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"}, {"type": "null"}]}
+      }
+    },
+    "operations": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["requires"],
+        "properties": {
+          "requires": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^(agent_host|task_store|git_provider):[a-z][a-z0-9._-]*:(read|preview|write)$"}
+          }
+        }
+      }
+    }
+  }
+}

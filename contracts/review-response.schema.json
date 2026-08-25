@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/review-response/v1",
+  "title": "Team Dev Flow Review Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "finding_id", "status", "resolution"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/review-response/v1"},
+    "finding_id": {"type": "string", "pattern": "^REV-[0-9]{3,}$"},
+    "status": {"enum": ["accepted", "rejected_with_reason", "needs_evidence", "deferred", "duplicate"]},
+    "resolution": {"type": "string", "minLength": 1},
+    "resolution_sha": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+    "verification": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "follow_up_ticket": {"type": "string", "pattern": "^[A-Z][A-Z0-9]+-[1-9][0-9]*$"},
+    "follow_up_ref": {"type": "string", "pattern": "^[a-z][a-z0-9+._-]*:[^\\s:]+:.+$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "deferred"}}},
+      "then": {"anyOf": [{"required": ["follow_up_ticket"]}, {"required": ["follow_up_ref"]}]}
+    }
+  ]
+}

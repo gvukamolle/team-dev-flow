@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run independent review"
+  short_description: "Review exact SHA without scope creep"
+  default_prompt: "Review the exact current SHA against the provider-neutral Task Contract and return only actionable, scoped findings."

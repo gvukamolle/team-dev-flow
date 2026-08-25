@@ -1,0 +1,14 @@
+{
+  "schema_version": "team-dev-flow/capability-manifest/v1",
+  "id": "github-issues",
+  "adapter_kind": "task_store",
+  "provider": "github",
+  "instance": "selected-repository",
+  "version": "1",
+  "status": "supported",
+  "capabilities": [
+    {"name": "work_item.read", "mode": "read", "enabled": true},
+    {"name": "work_item.mutation", "mode": "preview", "enabled": true},
+    {"name": "work_item.mutation", "mode": "write", "enabled": false, "reason": "The adapter returns exact gh argv/stdin for a human to apply"}
+  ]
+}

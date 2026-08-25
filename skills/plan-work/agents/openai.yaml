@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan work"
+  short_description: "Decompose Specs into owned, verifiable Tasks"
+  default_prompt: "Decompose this ready Spec into provider-neutral Tasks and check that the decomposition still covers the parent outcome."

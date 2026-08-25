@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/review-finding/v1",
+  "title": "Team Dev Flow Review Finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "finding_id",
+    "ticket",
+    "reviewed_sha",
+    "severity",
+    "scope",
+    "location",
+    "claim",
+    "evidence",
+    "expected_behavior",
+    "suggested_action"
+  ],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/review-finding/v1"},
+    "finding_id": {"type": "string", "pattern": "^REV-[0-9]{3,}$"},
+    "ticket": {"type": "string", "pattern": "^[A-Z][A-Z0-9]+-[1-9][0-9]*$"},
+    "reviewed_sha": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+    "severity": {"enum": ["P0", "P1", "P2", "P3"]},
+    "scope": {"enum": ["in_scope", "adjacent", "out_of_scope"]},
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "line": {"type": "integer", "minimum": 1},
+        "symbol": {"type": "string"}
+      }
+    },
+    "claim": {"type": "string", "minLength": 1},
+    "evidence": {"type": "string", "minLength": 1},
+    "expected_behavior": {"type": "string", "minLength": 1},
+    "suggested_action": {"type": "string", "minLength": 1},
+    "introduced_by_change": {"type": "boolean"},
+    "source": {"type": "string"}
+  }
+}

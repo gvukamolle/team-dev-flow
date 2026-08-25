@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/spec/v1",
+  "title": "Team Dev Flow Spec Driven Development artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "artifact_kind", "spec_type", "title", "status", "parent_refs", "problem", "outcome", "in_scope", "out_of_scope", "acceptance_criteria", "design", "constraints", "risks", "open_questions", "tasks", "source_refs", "revision", "spec_hash"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/spec/v1"},
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._/-]*$"},
+    "artifact_kind": {"enum": ["initiative", "epic", "spec"]},
+    "spec_type": {"type": ["string", "null"], "enum": ["quick", "feature", "bugfix", "research", "refactor_migration", null]},
+    "title": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "clarifying", "ready", "active", "verifying", "done", "superseded"]},
+    "parent_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "problem": {"type": "string", "minLength": 1},
+    "outcome": {"type": "string", "minLength": 1},
+    "in_scope": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "out_of_scope": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "text", "verification"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^AC-[0-9]{2,}$"},
+          "text": {"type": "string", "minLength": 1},
+          "verification": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "design": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decisions", "interfaces"],
+      "properties": {
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "text"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^DES-[0-9]{2,}$"},
+              "text": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "interfaces": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "constraints": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "risks": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "open_questions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["ref", "title", "kind", "status", "acceptance_refs", "design_refs"],
+        "properties": {
+          "ref": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["research", "implementation", "verification", "review"]},
+          "status": {"enum": ["backlog", "ready", "active", "blocked", "done", "cancelled"]},
+          "acceptance_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^AC-[0-9]{2,}$"}},
+          "design_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^DES-[0-9]{2,}$"}}
+        }
+      }
+    },
+    "source_refs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "revision": {
+      "type": "object", "additionalProperties": false,
+      "required": ["updated", "content_hash"],
+      "properties": {
+        "updated": {"type": "string", "minLength": 1},
+        "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "verification": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "spec_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"artifact_kind": {"const": "spec"}}},
+      "then": {"properties": {"spec_type": {"type": "string"}}},
+      "else": {"properties": {"spec_type": {"type": "null"}}}
+    }
+  ]
+}

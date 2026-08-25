@@ -1,0 +1,25 @@
+{
+  "name": "team-dev-flow",
+  "version": "0.6.0-dev.2",
+  "description": "Universal Agentic Spec-Driven Development flow for coding agents, local Markdown, Obsidian, GitHub, and Git.",
+  "author": {"name": "Team Dev Flow contributors"},
+  "homepage": "https://github.com/gvukamolle/team-dev-flow",
+  "repository": "https://github.com/gvukamolle/team-dev-flow",
+  "license": "Apache-2.0",
+  "keywords": ["codex", "kilo-code", "spec-driven-development", "github", "obsidian", "code-review"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Team Dev Flow",
+    "shortDescription": "Run universal spec-driven development",
+    "longDescription": "Shape Initiatives, Epics, and typed Specs; use GitHub Issues or Local Markdown as the selected TaskStore; implement bounded changes; run exact-SHA verification and review; and prepare a Git handoff.",
+    "developerName": "Team Dev Flow contributors",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/gvukamolle/team-dev-flow",
+    "defaultPrompt": [
+      "Create a feature spec and decompose it into tasks",
+      "Start GitHub issue owner/repository#17",
+      "Review this branch against its accepted scope"
+    ]
+  }
+}

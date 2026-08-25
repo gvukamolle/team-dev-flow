@@ -1,0 +1,4 @@
+interface:
+  display_name: "Team Dev Flow"
+  short_description: "Route spec-driven team development"
+  default_prompt: "Start or continue a team development task using its selected TaskStore scope and current repository state."

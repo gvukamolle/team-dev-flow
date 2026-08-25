@@ -1,0 +1,13 @@
+{
+  "schema_version": "team-dev-flow/capability-manifest/v1",
+  "id": "codex",
+  "adapter_kind": "agent_host",
+  "provider": "openai-codex",
+  "instance": "local",
+  "version": "1",
+  "status": "supported",
+  "capabilities": [
+    {"name": "workflow.execute", "mode": "read", "enabled": true},
+    {"name": "confirmation.elicit", "mode": "write", "enabled": false, "reason": "No portable trusted confirmation primitive is assumed"}
+  ]
+}

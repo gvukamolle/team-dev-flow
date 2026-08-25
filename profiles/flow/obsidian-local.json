@@ -1,0 +1,14 @@
+{
+  "schema_version": "team-dev-flow/flow-profile/v1",
+  "id": "obsidian-local",
+  "version": "1",
+  "adapters": {"agent_host": "codex", "task_store": "local-obsidian", "git_provider": "git-local"},
+  "operations": {
+    "discover": {"requires": ["agent_host:workflow.execute:read"]},
+    "start_work": {"requires": ["task_store:work_item.read:read", "git_provider:repository.read:read"]},
+    "preview_task_update": {"requires": ["task_store:work_item.mutation:preview"]},
+    "apply_task_update": {"requires": ["task_store:work_item.mutation:write", "task_store:history.append:write"]},
+    "refresh_dashboard": {"requires": ["task_store:dashboard.generate:write"]},
+    "commit": {"requires": ["git_provider:commit.write:write"]}
+  }
+}

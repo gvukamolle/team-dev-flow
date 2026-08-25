@@ -1,0 +1,16 @@
+{
+  "schema_version": "team-dev-flow/capability-manifest/v1",
+  "id": "local-obsidian",
+  "adapter_kind": "task_store",
+  "provider": "local_markdown",
+  "instance": "selected-vault-root",
+  "version": "1",
+  "status": "supported",
+  "capabilities": [
+    {"name": "work_item.read", "mode": "read", "enabled": true},
+    {"name": "work_item.mutation", "mode": "preview", "enabled": true},
+    {"name": "work_item.mutation", "mode": "write", "enabled": true, "reason": "Confined to an explicitly selected validated root with lock and atomic replace"},
+    {"name": "history.append", "mode": "write", "enabled": true},
+    {"name": "dashboard.generate", "mode": "write", "enabled": true}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "team-dev-flow/external-mutation-preview/v1",
+  "provider": "github",
+  "action": "create_issue",
+  "repository": "example/team-dev-flow",
+  "argv": ["gh", "issue", "create", "--repo", "example/team-dev-flow", "--title", "Add adapter", "--body-file", "-"],
+  "stdin": "Provider-neutral acceptance criteria.",
+  "source_sha": null,
+  "mutation_available": false,
+  "confirmation_required": true
+}

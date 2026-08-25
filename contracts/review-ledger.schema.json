@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/review-ledger/v1",
+  "title": "Team Dev Flow Review Ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "passes"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/review-ledger/v1"},
+    "passes": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pass", "ticket", "reviewed_sha", "contract_hash", "jira_revision",
+          "contract_drift", "verification_report", "findings", "result", "recorded_at"
+        ],
+        "properties": {
+          "pass": {"type": "integer", "minimum": 1, "maximum": 5},
+          "ticket": {"type": "string", "pattern": "^[A-Z][A-Z0-9]+-[1-9][0-9]*$"},
+          "reviewed_sha": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+          "contract_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "jira_revision": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["updated", "content_hash"],
+            "properties": {
+              "updated": {"type": "string", "minLength": 1},
+              "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+            }
+          },
+          "contract_drift": {"type": "boolean"},
+          "verification_report": {
+            "$ref": "https://team.local/schemas/team-dev-flow/verification-report/v1"
+          },
+          "findings": {
+            "type": "array",
+            "items": {
+              "allOf": [
+                {"$ref": "https://team.local/schemas/team-dev-flow/review-disposition/v1"},
+                {
+                  "if": {"required": ["disagreement"]},
+                  "then": {
+                    "properties": {
+                      "disagreement": {"required": ["fingerprint", "evidence_revision"]}
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "result": {"enum": ["PASS", "REQUEST_CHANGES", "ESCALATE"]},
+          "recorded_at": {"type": "string", "format": "date-time"}
+        }
+      }
+    }
+  }
+}

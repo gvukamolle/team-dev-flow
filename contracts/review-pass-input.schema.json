@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/review-pass-input/v1",
+  "title": "Team Dev Flow Review Pass Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ticket", "reviewed_sha", "contract_hash", "jira_revision",
+    "contract_drift", "verification_report", "findings"
+  ],
+  "properties": {
+    "ticket": {"type": "string", "pattern": "^[A-Z][A-Z0-9]+-[1-9][0-9]*$"},
+    "reviewed_sha": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+    "contract_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "jira_revision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["updated", "content_hash"],
+      "properties": {
+        "updated": {"type": "string", "minLength": 1},
+        "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "contract_drift": {"type": "boolean"},
+    "verification_report": {
+      "$ref": "https://team.local/schemas/team-dev-flow/verification-report/v1"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "https://team.local/schemas/team-dev-flow/review-disposition/v1"
+      }
+    }
+  }
+}

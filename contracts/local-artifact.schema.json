@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/local-artifact/v1",
+  "title": "Team Dev Flow Local Markdown artifact metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "store_id", "ref", "id", "kind", "project", "title", "status", "health", "stage", "parent_ref", "dependency_refs", "created", "updated"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/local-artifact/v1"},
+    "store_id": {"type": "string", "pattern": "^[a-f0-9]{16}$"},
+    "ref": {"type": "string", "pattern": "^local_markdown:[a-f0-9]{16}:[A-Za-z0-9._/-]+$"},
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"},
+    "kind": {"enum": ["project", "initiative", "epic", "spec", "task"]},
+    "project": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"},
+    "title": {"type": "string", "minLength": 1},
+    "status": {"enum": ["backlog", "draft", "clarifying", "ready", "active", "blocked", "verifying", "reviewing", "done", "cancelled", "superseded"]},
+    "health": {"enum": ["unknown", "on_track", "at_risk", "blocked"]},
+    "stage": {"enum": ["discovery", "specifying", "planning", "implementing", "verifying", "reviewing", "done"]},
+    "parent_ref": {"type": ["string", "null"]},
+    "dependency_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "created": {"type": "string", "format": "date-time"},
+    "updated": {"type": "string", "format": "date-time"},
+    "due": {"type": ["string", "null"], "format": "date"}
+  }
+}

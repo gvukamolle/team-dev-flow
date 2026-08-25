@@ -1,0 +1,14 @@
+{
+  "schema_version": "team-dev-flow/capability-manifest/v1",
+  "id": "git-local",
+  "adapter_kind": "git_provider",
+  "provider": "git",
+  "instance": "workspace",
+  "version": "1",
+  "status": "supported",
+  "capabilities": [
+    {"name": "repository.read", "mode": "read", "enabled": true},
+    {"name": "commit.write", "mode": "write", "enabled": true},
+    {"name": "remote.push", "mode": "write", "enabled": false, "reason": "Remote side effects require an explicit delivery action"}
+  ]
+}

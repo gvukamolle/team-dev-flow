@@ -1,0 +1,4 @@
+interface:
+  display_name: "Finish Jira ticket"
+  short_description: "Prepare current-SHA handoff and MR evidence"
+  default_prompt: "Verify completion gates and prepare a factual TaskStore and GitProvider handoff for the exact reviewed SHA."

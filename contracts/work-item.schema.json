@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/work-item/v1",
+  "title": "Team Dev Flow provider-neutral work item",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "ref", "source", "kind", "title", "body", "status", "resolution", "parent_ref", "labels", "relations", "metadata"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/work-item/v1"},
+    "ref": {"type": "string", "pattern": "^[a-z][a-z0-9+._-]*:[^\\s:]+:.+$"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "instance", "native_id", "url"],
+      "properties": {
+        "provider": {"type": "string", "pattern": "^[a-z][a-z0-9._-]*$"},
+        "instance": {"type": "string", "minLength": 1},
+        "native_id": {"type": "string", "minLength": 1},
+        "url": {"type": ["string", "null"], "format": "uri"}
+      }
+    },
+    "kind": {"enum": ["initiative", "epic", "spec", "task", "subtask", "unknown"]},
+    "title": {"type": "string"},
+    "body": {"type": "string"},
+    "status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "category"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "category": {"enum": ["backlog", "ready", "in_progress", "blocked", "done", "cancelled", "unknown"]}
+      }
+    },
+    "resolution": {"type": ["string", "null"]},
+    "parent_ref": {"type": ["string", "null"]},
+    "labels": {"type": "array", "items": {"type": "string"}},
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "direction", "target_ref"],
+        "properties": {
+          "type": {"type": "string", "minLength": 1},
+          "direction": {"enum": ["inward", "outward"]},
+          "target_ref": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "metadata": {"type": "object"}
+  }
+}

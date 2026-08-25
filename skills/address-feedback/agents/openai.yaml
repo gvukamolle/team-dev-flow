@@ -1,0 +1,4 @@
+interface:
+  display_name: "Address review feedback"
+  short_description: "Verify and triage external comments"
+  default_prompt: "Verify each external review comment against the current SHA and Task Contract before acting on it."

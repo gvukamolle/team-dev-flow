@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/parent-progress/v1",
+  "title": "Team Dev Flow parent progress projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "health", "stage", "completed_required", "total_required", "percent"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/parent-progress/v1"},
+    "status": {"enum": ["backlog", "in_progress", "done", "cancelled"]},
+    "health": {"enum": ["on_track", "at_risk", "blocked", "unknown"]},
+    "stage": {"enum": ["discovery", "specifying", "planning", "implementing", "verifying", "reviewing", "done"]},
+    "completed_required": {"type": "integer", "minimum": 0},
+    "total_required": {"type": "integer", "minimum": 0},
+    "percent": {"type": "integer", "minimum": 0, "maximum": 100}
+  }
+}

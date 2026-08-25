@@ -1,0 +1,14 @@
+{
+  "schema_version": "team-dev-flow/flow-profile/v1",
+  "id": "kilo-github",
+  "version": "1",
+  "adapters": {"agent_host": "kilo-code", "task_store": "github-issues", "git_provider": "github"},
+  "operations": {
+    "discover": {"requires": ["agent_host:workflow.execute:read", "agent_host:skills.load:read"]},
+    "start_work": {"requires": ["task_store:work_item.read:read", "git_provider:repository.read:read"]},
+    "preview_issue_update": {"requires": ["task_store:work_item.mutation:preview"]},
+    "preview_pull_request": {"requires": ["git_provider:pull_request.mutation:preview"]},
+    "apply_issue_update": {"requires": ["task_store:work_item.mutation:write"]},
+    "create_pull_request": {"requires": ["git_provider:pull_request.mutation:write"]}
+  }
+}

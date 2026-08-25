@@ -1,0 +1,14 @@
+{
+  "schema_version": "team-dev-flow/capability-manifest/v1",
+  "id": "github",
+  "adapter_kind": "git_provider",
+  "provider": "github",
+  "instance": "selected-repository",
+  "version": "1",
+  "status": "supported",
+  "capabilities": [
+    {"name": "repository.read", "mode": "read", "enabled": true},
+    {"name": "pull_request.mutation", "mode": "preview", "enabled": true},
+    {"name": "pull_request.mutation", "mode": "write", "enabled": false, "reason": "The adapter returns exact gh argv/stdin for a human to apply"}
+  ]
+}

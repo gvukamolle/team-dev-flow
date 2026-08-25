@@ -1,0 +1,4 @@
+interface:
+  display_name: "Specify work"
+  short_description: "Create a right-sized Initiative, Epic, or Spec"
+  default_prompt: "Turn this idea or work item into the smallest evidence-backed specification that is ready for task planning."

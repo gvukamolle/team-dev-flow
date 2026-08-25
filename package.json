@@ -1,0 +1,12 @@
+{
+  "name": "team-dev-flow",
+  "version": "0.6.0-dev.2",
+  "private": true,
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "node --test core/test/*.test.cjs && python3 -m unittest discover -s scripts/tests -p 'test_*.py'",
+    "validate": "python3 scripts/validate_repository.py",
+    "package": "python3 scripts/package_release.py && python3 scripts/verify_package.py"
+  },
+  "engines": {"node": ">=20"}
+}

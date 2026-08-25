@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/local-store/v1",
+  "title": "Team Dev Flow Local Markdown TaskStore",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "store_id", "provider", "root_name", "created"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/local-store/v1"},
+    "store_id": {"type": "string", "pattern": "^[a-f0-9]{16}$"},
+    "provider": {"const": "local_markdown"},
+    "root_name": {"type": "string", "minLength": 1},
+    "created": {"type": "string", "format": "date-time"}
+  }
+}

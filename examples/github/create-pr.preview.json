@@ -1,0 +1,11 @@
+{
+  "schema_version": "team-dev-flow/external-mutation-preview/v1",
+  "provider": "github",
+  "action": "create_pull_request",
+  "repository": "example/team-dev-flow",
+  "argv": ["gh", "pr", "create", "--repo", "example/team-dev-flow", "--base", "main", "--head", "feature/FLOW-1", "--title", "Add adapter", "--body-file", "-"],
+  "stdin": "Validated at the exact source SHA.",
+  "source_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "mutation_available": false,
+  "confirmation_required": true
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "team-dev-flow/capability-manifest/v1",
+  "id": "gitlab",
+  "adapter_kind": "git_provider",
+  "provider": "gitlab",
+  "instance": "selected-project",
+  "version": "1",
+  "status": "planned",
+  "capabilities": [
+    {"name": "repository.read", "mode": "read", "enabled": false, "reason": "No bundled GitLab API adapter in M0-M2"},
+    {"name": "merge_request.mutation", "mode": "write", "enabled": false, "reason": "No bundled GitLab API adapter in M0-M2"}
+  ]
+}

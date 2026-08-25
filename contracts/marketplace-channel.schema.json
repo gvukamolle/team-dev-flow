@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/marketplace-channel/v1",
+  "title": "Team Dev Flow marketplace channel",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "channel", "plugin", "current", "previous"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/marketplace-channel/v1"},
+    "channel": {"enum": ["canary", "stable"]},
+    "plugin": {"const": "team-dev-flow"},
+    "current": {"anyOf": [{"$ref": "#/$defs/release"}, {"type": "null"}]},
+    "previous": {"anyOf": [{"$ref": "#/$defs/release"}, {"type": "null"}]}
+  },
+  "$defs": {
+    "release": {
+      "type": "object", "additionalProperties": false,
+      "required": ["version", "git_ref", "artifact_sha256"],
+      "properties": {
+        "version": {"type": "string", "minLength": 1},
+        "git_ref": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "artifact_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    }
+  }
+}

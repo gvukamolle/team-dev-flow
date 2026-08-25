@@ -1,0 +1,5 @@
+interface:
+  display_name: "Team Dev Flow"
+  short_description: "Jira-scoped Codex development"
+  default_prompt: "Use Team Dev Flow to load the Jira ticket, establish a bounded task contract, implement it, verify it, and run independent review."
+

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/work-context/v1",
+  "title": "Team Dev Flow provider-neutral work context",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source", "primary", "ancestors", "children", "revision", "capabilities", "warnings"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/work-context/v1"},
+    "source": {
+      "type": "object", "additionalProperties": false, "required": ["provider", "instance"],
+      "properties": {
+        "provider": {"type": "string", "pattern": "^[a-z][a-z0-9._-]*$"},
+        "instance": {"type": "string", "minLength": 1}
+      }
+    },
+    "primary": {"$ref": "work-item.schema.json"},
+    "ancestors": {"type": "array", "items": {"$ref": "work-item.schema.json"}},
+    "children": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["ref", "native_id", "title", "status"],
+        "properties": {
+          "ref": {"type": "string", "minLength": 1},
+          "native_id": {"type": "string", "minLength": 1},
+          "title": {"type": "string"},
+          "status": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "revision": {
+      "type": "object", "additionalProperties": false, "required": ["updated", "content_hash"],
+      "properties": {
+        "updated": {"type": ["string", "null"]},
+        "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "capabilities": {
+      "type": "object", "additionalProperties": false, "required": ["acceptance_criteria", "risk"],
+      "properties": {
+        "acceptance_criteria": {"type": "boolean"},
+        "risk": {"type": "boolean"}
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  }
+}

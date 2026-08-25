@@ -1,0 +1,15 @@
+{
+  "schema_version": "team-dev-flow/capability-manifest/v1",
+  "id": "kilo-code",
+  "adapter_kind": "agent_host",
+  "provider": "kilo-code",
+  "instance": "workspace",
+  "version": "1",
+  "status": "supported",
+  "capabilities": [
+    {"name": "workflow.execute", "mode": "read", "enabled": true},
+    {"name": "skills.load", "mode": "read", "enabled": true},
+    {"name": "agent.permissions", "mode": "preview", "enabled": true},
+    {"name": "confirmation.elicit", "mode": "write", "enabled": false, "reason": "Team Dev Flow does not assume user approval settings provide a portable write token"}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/external-mutation-preview/v1",
+  "title": "Team Dev Flow non-authorizing external mutation preview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "provider", "action", "repository", "argv", "stdin", "mutation_available", "confirmation_required"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/external-mutation-preview/v1"},
+    "provider": {"enum": ["github", "gitlab", "jira"]},
+    "action": {"type": "string", "minLength": 1},
+    "repository": {"type": ["string", "null"]},
+    "argv": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "stdin": {"type": ["string", "null"]},
+    "source_sha": {"type": ["string", "null"], "pattern": "^[a-f0-9]{40}$"},
+    "mutation_available": {"const": false},
+    "confirmation_required": {"const": true}
+  }
+}

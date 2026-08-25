@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://team.local/schemas/team-dev-flow/promotion-plan/v1",
+  "title": "Team Dev Flow identity-preserving promotion plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "source_ref", "native_id", "from_kind", "to_kind", "reason", "history_event"],
+  "properties": {
+    "schema_version": {"const": "team-dev-flow/promotion-plan/v1"},
+    "status": {"const": "preview"},
+    "source_ref": {"type": "string", "minLength": 1},
+    "native_id": {"type": "string", "minLength": 1},
+    "from_kind": {"enum": ["task", "spec", "epic"]},
+    "to_kind": {"enum": ["spec", "epic", "initiative"]},
+    "reason": {"type": "string", "minLength": 1},
+    "history_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "from_kind", "to_kind", "preserved_ref"],
+      "properties": {
+        "type": {"const": "promotion"},
+        "from_kind": {"enum": ["task", "spec", "epic"]},
+        "to_kind": {"enum": ["spec", "epic", "initiative"]},
+        "preserved_ref": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}
